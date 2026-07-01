@@ -75,3 +75,6 @@ Testing/
 *.suo
 *.user
 *.slnx.docstate
+
+bin/
+bin-int/
