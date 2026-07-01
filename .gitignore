@@ -67,3 +67,11 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+
+# VS local cache
+.vs/
+*.vcxproj.user
+*.suo
+*.user
+*.slnx.docstate
