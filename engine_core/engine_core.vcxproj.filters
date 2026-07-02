@@ -27,12 +27,21 @@
     <ClInclude Include="src\engine_core.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\engine_core\log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\engine_core\test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\engine_core\app.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine_core\log.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine_core\entry_point.h">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

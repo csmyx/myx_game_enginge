@@ -92,11 +92,14 @@
   <ItemGroup>
     <ClInclude Include="src\engine_core.h" />
     <ClInclude Include="src\engine_core\app.h" />
+    <ClInclude Include="src\engine_core\entry_point.h" />
+    <ClInclude Include="src\engine_core\log.h" />
     <ClInclude Include="src\engine_core\test.h" />
     <ClInclude Include="src\engine_core\util.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\engine_core\app.cpp" />
+    <ClCompile Include="src\engine_core\log.cpp" />
     <ClCompile Include="src\engine_core\test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

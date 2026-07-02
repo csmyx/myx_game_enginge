@@ -1,11 +1,18 @@
 #include <engine_core.h>
+#include <print>
 
 class MyApp : public engine_core::App {
+public:
+	MyApp() {
+		std::println("MyApp constructor");
+	}
+	~MyApp() {
+		std::println("MyApp destructor");
+	}
 };
 
-int main() {
-	engine_core::test::run_tests();
-	MyApp app;
-	app.run();
-	return 0;
+engine_core::App* create_app()
+{
+	return new MyApp();
 }
+
