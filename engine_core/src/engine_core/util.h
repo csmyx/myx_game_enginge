@@ -10,3 +10,5 @@
 	#error "Unsupported platform"
 #endif
 
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
