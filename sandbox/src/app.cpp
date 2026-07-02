@@ -4,10 +4,10 @@
 class MyApp : public engine_core::App {
 public:
 	MyApp() {
-		std::println("MyApp constructor");
+		ENGINE_CLIENT_INFO("MyApp constructed.");
 	}
 	~MyApp() {
-		std::println("MyApp destructor");
+		ENGINE_CLIENT_INFO("MyApp destructed.");
 	}
 };
 

@@ -5,7 +5,6 @@
 namespace engine_core {
 	class ENGINE_CORE_API App {
 	public:
-		static void init();
 		static App* create_app();
 	public:
 		App() {};

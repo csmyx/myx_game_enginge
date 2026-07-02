@@ -13,6 +13,8 @@ void Log::init() {
 	s_client_logger = spdlog::stdout_color_mt("APP");
 	s_client_logger->set_level(spdlog::level::trace);
 	s_client_logger->set_pattern("%^[%T] %n: %v%$");
+
+	ENGINE_CORE_INFO("Log initialized.");
 }
 
 std::shared_ptr<spdlog::logger>& Log::get_core_logger() {
