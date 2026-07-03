@@ -10,16 +10,16 @@ namespace engine_core {
 #pragma warning(push)
 #pragma warning(disable: 4251)
 
-class ENGINE_CORE_API Log {
+class Log {
 public:
-    static void init();
+	ENGINE_CORE_API static void init();
 
-    static std::shared_ptr<spdlog::logger>& get_core_logger();
-    static std::shared_ptr<spdlog::logger>& get_client_logger();
+	ENGINE_CORE_API static std::shared_ptr<spdlog::logger>& get_core_logger();
+	ENGINE_CORE_API static std::shared_ptr<spdlog::logger>& get_client_logger();
 
 private:
-    static std::shared_ptr<spdlog::logger> s_core_logger;
-    static std::shared_ptr<spdlog::logger> s_client_logger;
+	static std::shared_ptr<spdlog::logger> s_core_logger;
+	static std::shared_ptr<spdlog::logger> s_client_logger;
 };
 
 #define ENGINE_CORE_TRACE(...)  ::engine_core::Log::get_core_logger()->trace(__VA_ARGS__)
