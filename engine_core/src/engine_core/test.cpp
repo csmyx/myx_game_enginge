@@ -1,9 +1,9 @@
 #include "test.h"
 #include "log.h"
-#include <print>
+#include <iostream>
 
 namespace engine_core::test {
 	void run_tests() {
-		std::println("Running tests...");
+		std::cout << "Running tests..." << std::endl;
 	}
 }

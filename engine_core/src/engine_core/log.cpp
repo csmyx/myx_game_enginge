@@ -18,10 +18,12 @@ void Log::init() {
 }
 
 std::shared_ptr<spdlog::logger>& Log::get_core_logger() {
+	ENGINE_CORE_ASSERT(s_core_logger, "Log::init() must be called before accessing loggers");
 	return s_core_logger;
 }
 
 std::shared_ptr<spdlog::logger>& Log::get_client_logger() {
+	ENGINE_CORE_ASSERT(s_client_logger, "Log::init() must be called before accessing loggers");
 	return s_client_logger;
 }
 
