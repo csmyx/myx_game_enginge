@@ -93,6 +93,11 @@
     <ClInclude Include="src\engine_core.h" />
     <ClInclude Include="src\engine_core\app.h" />
     <ClInclude Include="src\engine_core\entry_point.h" />
+    <ClInclude Include="src\engine_core\event\event.h" />
+    <ClInclude Include="src\engine_core\event\event_dispatcher.h" />
+    <ClInclude Include="src\engine_core\event\key_event.h" />
+    <ClInclude Include="src\engine_core\event\mouse_event.h" />
+    <ClInclude Include="src\engine_core\event\window_event.h" />
     <ClInclude Include="src\engine_core\log.h" />
     <ClInclude Include="src\engine_core\test.h" />
     <ClInclude Include="src\engine_core\util.h" />
