@@ -4,7 +4,7 @@
 
 class SandboxLayer : public engine_core::Layer {
 public:
-  SandboxLayer() : Layer("SandboxLayer") {}
+  SandboxLayer(engine_core::App& app) : Layer(app, "SandboxLayer") {}
 
   void on_attach() override {
     ENGINE_CLIENT_INFO("SandboxLayer attached");
@@ -62,6 +62,6 @@ class SandboxApp : public engine_core::App {
 
 engine_core::App *create_app() {
   auto *app = new SandboxApp();
-  app->push_layer(new SandboxLayer());
+  app->push_layer(new SandboxLayer(*app));
   return app;
 }

@@ -11,10 +11,8 @@ class App; // forward decl — allow Layer to access App without full include
 #pragma warning(push)
 #pragma warning(disable : 4251)
 class ENGINE_CORE_API Layer {
-	friend class LayerStack;
-
 public:
-	Layer(const std::string& name = "Layer") : m_debug_name(name) {}
+	explicit Layer(App& app, const std::string& name = "Layer");
 	virtual ~Layer();
 
 	virtual void on_attach() {}
@@ -26,13 +24,12 @@ public:
 	const std::string& get_name() const { return m_debug_name; }
 
 protected:
-	App& get_app();
+	App& get_app() { return *m_app; }
 	Window& get_window();
 
 private:
 	std::string m_debug_name;
-	App* m_app = nullptr;
-	void set_app(App* app) { m_app = app; }
+	App* m_app; // non-null guaranteed by constructor
 };
 
 #pragma warning(pop)

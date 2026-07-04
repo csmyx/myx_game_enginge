@@ -3,13 +3,12 @@
 
 namespace engine_core {
 
+Layer::Layer(App& app, const std::string& name)
+	: m_debug_name(name), m_app(&app) {}
+
 Layer::~Layer() {}
 
 void Layer::on_imgui_render() {}
-
-App& Layer::get_app() {
-	return *m_app;
-}
 
 Window& Layer::get_window() {
 	return m_app->get_window();
