@@ -19,11 +19,15 @@ public:
 	void push_layer(Layer* layer) {
 		m_layers.insert(m_layers.begin() + m_layer_insert_index, layer);
 		m_layer_insert_index++;
-		layer->on_attach();
 	}
 	void push_overlay(Layer* overlay) {
 		m_layers.push_back(overlay);
-		overlay->on_attach();
+	}
+
+	/// Call after window is ready. Triggers on_attach() on all layers.
+	void attach_all() {
+		for (auto layer : m_layers)
+			layer->on_attach();
 	}
 
   void on_update(float delta_time) {

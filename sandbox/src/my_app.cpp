@@ -4,7 +4,7 @@
 
 class SandboxLayer : public engine_core::Layer {
 public:
-  SandboxLayer(engine_core::App& app) : Layer(app, "SandboxLayer") {}
+  SandboxLayer(engine_core::App &app) : Layer(app, "SandboxLayer") {}
 
   void on_attach() override {
     ENGINE_CLIENT_INFO("SandboxLayer attached");
@@ -46,9 +46,7 @@ public:
 // ── App pattern: app-level initialization ──────────────────
 
 class SandboxApp : public engine_core::App {
-  void on_init() override {
-    ENGINE_CLIENT_INFO("SandboxApp initializing...");
-  }
+  void on_init() override { ENGINE_CLIENT_INFO("SandboxApp initializing..."); }
 };
 
 // ── Entry point ────────────────────────────────────────────
