@@ -98,6 +98,7 @@
     <ClInclude Include="src\engine_core\event\key_event.h" />
     <ClInclude Include="src\engine_core\event\mouse_event.h" />
     <ClInclude Include="src\engine_core\event\window_event.h" />
+    <ClInclude Include="src\engine_core\imgui_layer.h" />
     <ClInclude Include="src\engine_core\layer.h" />
     <ClInclude Include="src\engine_core\layer_stack.h" />
     <ClInclude Include="src\engine_core\log.h" />
@@ -108,6 +109,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\engine_core\app.cpp" />
+    <ClCompile Include="src\engine_core\imgui\imgui_impl_glfw.cpp">
+      <PreprocessorDefinitions>IMGUI_IMPL_OPENGL_LOADER_GLAD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="src\engine_core\imgui\imgui_impl_opengl3.cpp">
+      <PreprocessorDefinitions>IMGUI_IMPL_OPENGL_LOADER_GLAD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="src\engine_core\imgui_layer.cpp" />
     <ClCompile Include="src\engine_core\layer.cpp" />
     <ClCompile Include="src\engine_core\log.cpp" />
     <ClCompile Include="src\engine_core\platform\windows\windows_window.cpp" />

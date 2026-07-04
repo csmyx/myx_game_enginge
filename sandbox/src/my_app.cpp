@@ -32,21 +32,14 @@ public:
   }
 
   void on_update(float dt) override {
-    // static int frame = 0;
-    // if (++frame % 480 == 0) { // log every 60 frames
-    //   ENGINE_CLIENT_INFO("SandboxLayer frame {}, dt={:.4f}s", frame, dt);
-    // }
-    // 静态变量：只会初始化一次
-    static double last_print_time = glfwGetTime();
-    double current_time = glfwGetTime();
+    // per-frame logic here
+  }
 
-    // 间隔 >= 1 秒打印一次
-    if (current_time - last_print_time >= 1.0) {
-      last_print_time = current_time;
-      // 帧率 = 1 / dt
-      float fps = 1.0f / dt;
-      ENGINE_CLIENT_INFO("SandboxLayer dt={:.4f}s, FPS={:.1f}", dt, fps);
-    }
+  void on_imgui_render() override {
+    ImGui::Begin("Sandbox Debug");
+    ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
+    ImGui::Text("Frame time: %.3f ms", 1000.0f / ImGui::GetIO().Framerate);
+    ImGui::End();
   }
 };
 

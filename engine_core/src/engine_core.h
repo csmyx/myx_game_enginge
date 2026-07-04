@@ -6,6 +6,8 @@
 
 #include <GLFW/glfw3.h>
 
+#include <imgui.h>
+
 #include "engine_core/app.h"
 #include "engine_core/entry_point.h"
 #include "engine_core/layer.h"
@@ -19,3 +21,4 @@
 #include "engine_core/event/key_event.h"
 #include "engine_core/event/mouse_event.h"
 #include "engine_core/event/window_event.h"
+#include "engine_core/imgui_layer.h"

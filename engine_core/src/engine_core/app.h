@@ -12,6 +12,8 @@
 
 namespace engine_core {
 
+class ImGuiLayer; // forward
+
 #pragma warning(push)
 #pragma warning(disable : 4251)
 
@@ -58,6 +60,7 @@ private:
 	bool m_running = true;
 	std::unique_ptr<Window> m_window;
 	LayerStack m_layer_stack;
+	ImGuiLayer* m_imgui_layer = nullptr; // owned by layer stack
 	std::chrono::steady_clock::time_point m_last_frame_time{};
 };
 

@@ -1,4 +1,5 @@
 #include "app.h"
+#include "imgui_layer.h"
 #include "log.h"
 
 namespace engine_core {
@@ -16,6 +17,10 @@ void App::run() {
 
 	on_init();
 
+	// ImGui overlay: always-on-top debug/editor UI
+	m_imgui_layer = new ImGuiLayer(*this);
+	push_overlay(m_imgui_layer);
+
 	while (m_running && !m_window->should_close()) {
 		auto now = std::chrono::steady_clock::now();
 		float dt = std::chrono::duration<float>(now - m_last_frame_time).count();
@@ -26,7 +31,11 @@ void App::run() {
 		m_layer_stack.on_update(dt);     // layer updates (forward order)
 
 		m_window->clear();
-		m_layer_stack.on_imgui_render(); // layer rendering
+
+		m_imgui_layer->begin();
+		m_layer_stack.on_imgui_render(); // layers draw their ImGui widgets
+		m_imgui_layer->end();
+
 		m_window->swap_buffers();
 	}
 
