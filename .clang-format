@@ -1,0 +1,4 @@
+BasedOnStyle: WebKit
+---
+# Exclude vendored code
+DisableFormat: false
