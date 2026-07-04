@@ -1,47 +1,50 @@
 #include <engine_core.h>
 
-class MyLayer1 : public engine_core::Layer {
+// ── Layer pattern: modular game logic ──────────────────────
+
+class SandboxLayer : public engine_core::Layer {
 public:
-  void on_event(engine_core::Event &event) override {
-    static int event_count = 0;
-    event_count++;
-    ENGINE_CLIENT_INFO("Layer1 received event: {}, Count: {}",
-                       event.get_name(), event_count);
-  }
-  void on_update(float delta_time) override {
-    static int update_count = 0;
-    update_count++;
-    ENGINE_CLIENT_INFO("Layer1 on_update() Frame: {}", update_count);
-  }
+	SandboxLayer() : Layer("SandboxLayer") {}
+
+	void on_attach() override {
+		ENGINE_CLIENT_INFO("SandboxLayer attached");
+	}
+
+	void on_event(engine_core::Event& e) override {
+		engine_core::EventDispatcher d(e);
+		d.dispatch<engine_core::KeyPressedEvent>([](auto& e) {
+			if (e.get_key_code() == GLFW_KEY_ESCAPE) {
+				ENGINE_CLIENT_INFO("ESC pressed — use WindowCloseEvent to quit");
+			}
+			return false; // don't consume, let App base handle close
+		});
+		d.dispatch<engine_core::MouseButtonReleasedEvent>([](auto& e) {
+			ENGINE_CLIENT_INFO("Mouse button {} released", e.get_mouse_button());
+			return true;
+		});
+	}
+
+	void on_update(float dt) override {
+		static int frame = 0;
+		if (++frame % 60 == 0) { // log every 60 frames
+			ENGINE_CLIENT_INFO("SandboxLayer frame {}, dt={:.4f}s", frame, dt);
+		}
+	}
 };
 
-class MyApp2 : public engine_core::App {
-  void on_event(engine_core::Event &e) override {
-    engine_core::EventDispatcher d(e);
-    d.dispatch<engine_core::WindowCloseEvent>([this](auto &) {
-      close();
-      return true;
-    });
-    d.dispatch<engine_core::KeyPressedEvent>([this](auto &e) {
-      if (e.get_key_code() == GLFW_KEY_ESCAPE) {
-        close();
-        return true;
-      }
-      return false;
-    });
-    d.dispatch<engine_core::MouseButtonReleasedEvent>([](auto &e) {
-      ENGINE_CLIENT_INFO("Mouse button released: {}", e.get_mouse_button());
-      return true;
-    });
-  }
+// ── App pattern: app-level initialization ──────────────────
 
-  void on_update() override {
-    get_window().set_clear_color(0.2f, 0.3f, 0.4f, 1.0f);
-  }
+class SandboxApp : public engine_core::App {
+	void on_init() override {
+		ENGINE_CLIENT_INFO("SandboxApp initializing...");
+		get_window().set_clear_color(0.2f, 0.3f, 0.4f, 1.0f);
+	}
 };
 
-engine_core::App *create_app() {
-  auto *app = new MyApp2();
-  app->push_layer(new MyLayer1());
-  return app;
+// ── Entry point ────────────────────────────────────────────
+
+engine_core::App* create_app() {
+	auto* app = new SandboxApp();
+	app->push_layer(new SandboxLayer());
+	return app;
 }

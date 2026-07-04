@@ -4,6 +4,9 @@
 #include "util.h"
 
 namespace engine_core {
+
+#pragma warning(push)
+#pragma warning(disable : 4251)
 class ENGINE_CORE_API Layer {
 public:
   Layer(const std::string &name = "Layer") : m_debug_name(name) {};
@@ -23,3 +26,5 @@ protected:
 private:
 };
 } // namespace engine_core
+
+#pragma warning(pop)
