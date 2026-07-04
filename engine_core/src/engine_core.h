@@ -6,7 +6,13 @@
 
 #include <GLFW/glfw3.h>
 
-#include <imgui.h>
+// imgui static lib inside DLL — symbols must be exported/imported
+#ifdef ENGINE_CORE_EXPORTS
+  #define IMGUI_API __declspec(dllexport)
+#else
+  #define IMGUI_API __declspec(dllimport)
+#endif
+#include "engine_core/imgui/imgui.h"
 
 #include "engine_core/app.h"
 #include "engine_core/entry_point.h"

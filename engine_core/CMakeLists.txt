@@ -2,7 +2,6 @@
 find_package(spdlog CONFIG REQUIRED)
 find_package(glfw3 CONFIG REQUIRED)
 find_package(glad CONFIG REQUIRED)
-find_package(imgui CONFIG REQUIRED)
 
 # ── Sources ───────────────────────────────────────────────────
 file(GLOB_RECURSE ENGINE_SOURCES CONFIGURE_DEPENDS
@@ -22,6 +21,7 @@ target_include_directories(engine_core
 target_compile_definitions(engine_core
     PRIVATE ENGINE_CORE_EXPORTS
     PRIVATE IMGUI_IMPL_OPENGL_LOADER_GLAD
+    PRIVATE "IMGUI_API=__declspec(dllexport)"
 )
 
 # ── Link libraries ────────────────────────────────────────────
@@ -30,7 +30,6 @@ target_link_libraries(engine_core
         spdlog::spdlog
         glfw
         glad::glad
-        imgui::imgui
 )
 
 # ── Disable auto-export (we use explicit ENGINE_CORE_API) ─────
