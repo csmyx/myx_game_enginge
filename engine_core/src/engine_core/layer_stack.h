@@ -6,27 +6,29 @@
 
 namespace engine_core {
 
-class LayerStack {
-private:
-  std::vector<Layer *> m_layers;
-  unsigned int m_layer_insert_index = 0; // 普通Layer与Overlay分界线
-public:
-  ~LayerStack() {
-    for (auto layer : m_layers) {
-      layer->on_detach();
-      delete layer;
-    }
-  }
+class App; // forward
 
-  void push_layer(Layer *layer) {
-    m_layers.insert(m_layers.begin() + m_layer_insert_index, layer);
-    m_layer_insert_index++;
-    layer->on_attach();
-  }
-  void push_overlay(Layer *overlay) {
-    m_layers.push_back(overlay);
-    overlay->on_attach();
-  }
+class LayerStack {
+public:
+	explicit LayerStack(App* app) : m_app(app) {}
+	~LayerStack() {
+		for (auto layer : m_layers) {
+			layer->on_detach();
+			delete layer;
+		}
+	}
+
+	void push_layer(Layer* layer) {
+		layer->set_app(m_app);
+		m_layers.insert(m_layers.begin() + m_layer_insert_index, layer);
+		m_layer_insert_index++;
+		layer->on_attach();
+	}
+	void push_overlay(Layer* overlay) {
+		overlay->set_app(m_app);
+		m_layers.push_back(overlay);
+		overlay->on_attach();
+	}
 
   void on_update(float delta_time) {
     // 正序更新：底层→顶层
@@ -66,5 +68,10 @@ public:
   reverse_iterator rend() noexcept { return m_layers.rend(); }
   const_reverse_iterator crbegin() const noexcept { return m_layers.crbegin(); }
   const_reverse_iterator crend() const noexcept { return m_layers.crend(); }
+
+private:
+  std::vector<Layer*> m_layers;
+  unsigned int m_layer_insert_index = 0;
+  App* m_app = nullptr;
 };
 } // namespace engine_core

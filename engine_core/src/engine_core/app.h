@@ -17,7 +17,7 @@ namespace engine_core {
 
 class ENGINE_CORE_API App {
 protected:
-	App() = default;
+	App() : m_layer_stack(this) {}
 
 public:
 	virtual ~App();
