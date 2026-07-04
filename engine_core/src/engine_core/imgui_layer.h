@@ -21,8 +21,12 @@ public:
 	/// Call after layers.on_imgui_render(): renders and draws ImGui data.
 	void end();
 
+	/// Scale all ImGui elements (fonts, spacing, etc.) by a factor.
+	/// E.g. 2.0 for 200% high-DPI displays.
+	void set_ui_scale(float scale);
+
 private:
-	bool m_block_events = true; // block mouse/keyboard events when ImGui wants them
+	bool m_block_events = true; // block mouse/keyboard events when ImGui wants them
 };
 
 } // namespace engine_core

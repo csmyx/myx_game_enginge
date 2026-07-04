@@ -28,7 +28,12 @@ void ImGuiLayer::on_attach() {
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	ImGui_ImplOpenGL3_Init("#version 460");
 
-	ENGINE_CORE_INFO("ImGuiLayer attached");
+	// Auto-detect DPI scale from the window
+	float xscale = 1.0f, yscale = 1.0f;
+	glfwGetWindowContentScale(window, &xscale, &yscale);
+	set_ui_scale(xscale);
+
+	ENGINE_CORE_INFO("ImGuiLayer attached (DPI scale: {:.1f})", xscale);
 }
 
 void ImGuiLayer::on_detach() {
@@ -36,6 +41,12 @@ void ImGuiLayer::on_detach() {
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
 	ENGINE_CORE_INFO("ImGuiLayer detached");
+}
+
+void ImGuiLayer::set_ui_scale(float scale) {
+	if (scale <= 0.0f) scale = 1.0f;
+	ImGui::GetStyle().ScaleAllSizes(scale);
+	ImGui::GetIO().FontGlobalScale = scale;
 }
 
 void ImGuiLayer::on_event(Event& e) {
