@@ -98,6 +98,8 @@
     <ClInclude Include="src\engine_core\event\key_event.h" />
     <ClInclude Include="src\engine_core\event\mouse_event.h" />
     <ClInclude Include="src\engine_core\event\window_event.h" />
+    <ClInclude Include="src\engine_core\layer.h" />
+    <ClInclude Include="src\engine_core\layer_stack.h" />
     <ClInclude Include="src\engine_core\log.h" />
     <ClInclude Include="src\engine_core\platform\windows\windows_window.h" />
     <ClInclude Include="src\engine_core\test.h" />
@@ -106,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\engine_core\app.cpp" />
+    <ClCompile Include="src\engine_core\layer.cpp" />
     <ClCompile Include="src\engine_core\log.cpp" />
     <ClCompile Include="src\engine_core\platform\windows\windows_window.cpp" />
     <ClCompile Include="src\engine_core\test.cpp" />

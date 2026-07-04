@@ -4,6 +4,8 @@
 #include "../../event/window_event.h"
 #include "../../log.h"
 
+#include <glad/glad.h>
+#define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 
 namespace engine_core {
@@ -33,7 +35,9 @@ namespace engine_core {
 			s_glfw_initialized = true;
 		}
 
-		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API); // No OpenGL context for now
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
 
 		m_window = glfwCreateWindow(
 			static_cast<int>(props.width),
@@ -50,6 +54,16 @@ namespace engine_core {
 
 		glfwSetWindowUserPointer(m_window, this);
 		set_vsync(true);
+
+		// Initialize OpenGL loader
+		glfwMakeContextCurrent(m_window);
+		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+			ENGINE_CORE_ERROR("FATAL: glad initialization failed");
+			return;
+		}
+
+		ENGINE_CORE_INFO("OpenGL version: {}", (const char*)glGetString(GL_VERSION));
+		ENGINE_CORE_ASSERT(glGetError() == GL_NO_ERROR, "OpenGL error after init");
 
 		// Register GLFW callbacks
 		glfwSetKeyCallback(m_window, key_callback);
@@ -100,6 +114,18 @@ namespace engine_core {
 
 	void* WindowsWindow::get_native_window() const {
 		return static_cast<void*>(m_window);
+	}
+
+	void WindowsWindow::set_clear_color(float r, float g, float b, float a) {
+		glClearColor(r, g, b, a);
+	}
+
+	void WindowsWindow::clear() {
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	}
+
+	void WindowsWindow::swap_buffers() {
+		glfwSwapBuffers(m_window);
 	}
 
 	// --- Static GLFW callbacks ---

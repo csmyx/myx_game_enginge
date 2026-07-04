@@ -1,6 +1,7 @@
 # ── Dependencies ──────────────────────────────────────────────
 find_package(spdlog CONFIG REQUIRED)
 find_package(glfw3 CONFIG REQUIRED)
+find_package(glad CONFIG REQUIRED)
 
 # ── Sources ───────────────────────────────────────────────────
 file(GLOB_RECURSE ENGINE_SOURCES CONFIGURE_DEPENDS
@@ -26,6 +27,7 @@ target_link_libraries(engine_core
     PUBLIC
         spdlog::spdlog
         glfw
+        glad::glad
 )
 
 # ── Disable auto-export (we use explicit ENGINE_CORE_API) ─────

@@ -24,17 +24,14 @@
     {
       "name": "ninja-x64-debug",
       "displayName": "Ninja x64 Debug",
-      "description": "Single-config Ninja generator – generates compile_commands.json for clangd",
+      "description": "Single-config Ninja generator \u2013 generates compile_commands.json for clangd",
       "generator": "Ninja",
       "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
       "binaryDir": "${sourceDir}/build/cmake-ninja-debug",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
-        "CMAKE_LINKER_TYPE": "DEFAULT"
-      },
-      "environment": {
-        "PATH": "E:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64;$penv{PATH}"
+        "CMAKE_MAKE_PROGRAM": "E:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe"
       },
       "condition": {
         "type": "equals",

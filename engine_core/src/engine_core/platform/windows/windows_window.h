@@ -18,6 +18,9 @@ namespace engine_core {
 		void set_event_callback(const std::function<void(Event&)>& callback) override;
 		void set_vsync(bool enabled) override;
 		bool is_vsync() const override;
+		void set_clear_color(float r, float g, float b, float a) override;
+		void clear() override;
+		void swap_buffers() override;
 		void* get_native_window() const override;
 
 	private:

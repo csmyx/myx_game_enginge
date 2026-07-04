@@ -29,6 +29,9 @@ namespace engine_core {
 		virtual void set_event_callback(const std::function<void(Event&)>& callback) = 0;
 		virtual void set_vsync(bool enabled) = 0;
 		virtual bool is_vsync() const = 0;
+		virtual void set_clear_color(float r, float g, float b, float a) = 0;
+		virtual void clear() = 0;
+		virtual void swap_buffers() = 0;
 		virtual void* get_native_window() const = 0;
 
 		static Window* create(const WindowProps& props = WindowProps());
