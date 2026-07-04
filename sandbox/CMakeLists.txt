@@ -1,6 +1,6 @@
 # ── Executable ────────────────────────────────────────────────
 add_executable(sandbox
-    src/app.cpp
+    src/my_app.cpp
 )
 
 # ── Link against engine_core DLL ──────────────────────────────
