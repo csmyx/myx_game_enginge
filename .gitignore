@@ -76,5 +76,8 @@ Testing/
 *.user
 *.slnx.docstate
 
+# ImGui
+imgui.ini
+
 bin/
 bin-int/
